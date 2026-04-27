@@ -1,0 +1,1 @@
+Optimized gallery images live here. The original uploaded photos are kept in the root Gallery folder. gallery.html is generated from production-welding-project-*.jpg files, with thumb-production-welding-project-*.jpg used as fast-loading thumbnails.
