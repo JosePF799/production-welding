@@ -746,10 +746,17 @@ function homePage() {
       aggregateRatingNode(reviews),
       ...reviewNodes(reviews.slice(0, 3))
     ]),
-    preloads: [heroPreloadLink("roof")],
+    preloads: [
+      `<link rel="preload" as="image" href="assets/video/production-welding-hero-poster.jpg">`
+    ],
     body: `
       <section class="hero hero-with-image">
-        ${heroPicture("roof", "Custom steel roof structure welded by Production Welding")}
+        <picture class="hero-image">
+          <img src="assets/video/production-welding-hero-poster.jpg" alt="Production Welding setting a steel beam on a Bay Area job site" fetchpriority="high" decoding="async">
+        </picture>
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/production-welding-hero-poster.jpg" aria-hidden="true">
+          <source src="assets/video/production-welding-hero.mp4" type="video/mp4">
+        </video>
         <div class="hero-inner">
           <p class="eyebrow">Mobile and Shop Welding - Hayward, CA</p>
           <h1>Certified, insured welding across the Bay Area.</h1>
@@ -1764,6 +1771,16 @@ img {
   display: block;
 }
 
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
 .hero-image img {
   width: 100%;
   height: 100%;
@@ -2691,6 +2708,10 @@ details p {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .hero-video {
+    display: none;
   }
 
   *,
